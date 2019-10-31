@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Great Entertainment Vacation Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+  <!-- <script src="https://kit.fontawesome.com/cc682b11a6.js" crossorigin="anonymous"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+  <!-- Latest Bootstrap 4 version erase the menu bar -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+  <!-- <link href="./style.css"> -->
+
+  <!-- For Calendar -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+html {  /* This will not work if put in the style.css file */
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative; 
+}
+
+#Sect1-overview {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect2-amenities {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect3-reviews {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect4-map {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect5-availability {padding-top:50px; color: rgb(32, 32, 32); }
+
+div2 {
+  display: inline;
+}
+
+.ui-datepicker {
+  font-size: 1.6em;
+  }
+  
+#Mymap{
+  height:400px;
+  width:100%;
+}
+
+#availableDiv{
+  height:auto;
+  width:100%;
+}
+
+#checkInDate{
+  height:auto;
+  width:100%;
+}
+#checkOutDate{
+  height:auto;
+  width:100%;
+}
+
+#more {display: none;}
+
+#more2 {display: none;}
+
+/* change the background color */
+.navbar-custom {
+  background-color: #343440  /* #464545; */
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: #ffffff;
+  padding: 0.8rem 1rem;
+}
+
+/* change the link color and add padding for height */
+.navbar-custom .navbar-nav .nav-link {
+  color: rgba(255,255,255,.33);
+  padding: 1rem 1rem;
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #ffffff;
+  background-color: #000000/*#110f0f;  add background-color to active links */
+}
+
+  @media screen and (max-width: 970px) {
+    .ui-datepicker  { font-size: .7em;}
+  }
+
+</style>
+</head>
+<body data-spy="scroll" data-offset="50">  
+  <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: rgb(192, 192, 192);">
+    <a href="#" class="navbar-brand"><img src="./images/logo8.gif"></a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse5">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse5">
+      <form class="form-inline ml-auto">
+        <a class="btn btn-outline-secondary" href="about.html" role="button">About Owner</a>
+        <a class="btn btn-outline-secondary" href="login.html" role="button">Login</a>
+      </form>
+        <!-- <form class="form-inline ml-auto">
+            <input type="text" class="form-control mr-sm-2" placeholder="Search">
+            <button type="submit" class="btn btn-outline-light">Search</button>
+        </form> -->
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-md-8">
+        <div id="section0" class="container-fluid" >
+          <p><a href="carousel.html"><img class="img-responsive mw-100" src="./images/PoolNew.jpg"></a></p>
+          <!-- <button type="button" href="carousel.html" class="btn btn-default">View all 29 photos</button> -->
+          <a href="carousel.html" class="btn btn-outline-secondary float-right" role="button">View all 20 photos</a>
+        </div>
+      </div> <!-- col-8 because col-9 is too big for iPad Safari Check In/Out inputs -->
+
+      <div class="col-md-4">
+        <form id="addForm" class="form-inline mb-3">
+          <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              Check In: <br>
+              <input type="text" id="checkInDate" class="col-md-12"><br>
+              Check Out:<br>
+              <input type="text" id="checkOutDate" class="col-md-12"><br>  
+            </div>
+            <div class="col-md-6">
+              Adults: <br>
+              <input id="adultsNum" type="number" class="col-md-12" value="2" min="0" max="18" step="1"><br>
+              Children: <br>
+              <input id="childrenNum" type="number" class="col-md-12" value="2" min="0" max="18" step="1"><br>
+              <br><input type="submit" id="submit1" class="btn btn-outline-secondary" value="Submit">
+            </div>
+          </div> <!-- sub row -->
+          </div>        
+        </form>
+
+        <div class="container-fluid">
+          <p id = "totalGuests"></p>
+          <p id = "totalNights" ></p>
+          <p id = "totalCost"></p>
+          <p id = "taxesFees"></p>
+          <p id = "viewDetails"></p>
+          <p id = "bookNow"></p>
+        </div>
+      </div> <!-- col-md-4 -->
+    </div> <!-- big row -->
+
+    <!-- The Modal -->
+    <div class="modal" id="modalViewDetails">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">   Booking summary</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+            <div class="modal-body" id="modalViewDetails">
+              <div class="container-fluid">
+                <p>$259 x <span id = "modalViewDetailsNights1" ></span>
+                <span class = "float-right" id = "modalViewDetailsNights2" ></span></p>
+                <p>Cleaning: <span class = "float-right"  id = "modalViewDetailsCleaning"></span></p>
+                <p>Tax: <span class = "float-right"  id = "modalViewDetailsTax"></span></p>
+                <hr>
+                <p>Total: <span class = "float-right"  id = "modalViewDetailsTotal"></span></p>
+                <p>Deposit: <span class = "float-right"  id = "modalViewDetailsDeposit"></span></p>
+                <p>Total + Deposit: <span class = "float-right"  id = "modalViewDetailsTotal+Deposit"></span></p>
+                <hr>
+                <p>Your Payment: <span class = "float-right"  id = "modalViewDetailsYourPayment"></span></p>
+              </div> <!-- container-fluid -->
+            </div> <!-- modal-body -->
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <a href='input-form.html' class='btn btn-outline-secondary' role='button'>Book Now</a>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div> <!-- End modal -->
+
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top navbar-custom p-0">   <!-- This got rid of the black bar in the small creen caldendar -->
+      <div class="container">
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Sect1-overview">Overview</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Sect2-amenities">Amenitities</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Sect3-reviews">Reviews</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Sect4-map">Map</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Sect5-availability">Availability</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+      </nav>  
+      <div id="Sect1-overview" class="container">
+        <h1>Overview</h1>
+        <p>The house is in a quiet neighborhood and is close to freeways, restaurants, convenience stores, and a lot more.  It's been available for vacation rent since 2013 with many satisfied customers.
+            The dining room has a dining table set that can seat 8.  The family room has a new sectional sofa that can convert to a full sleeping bed, fireplace, and entertainment system.
+            The living room has sofa convertible into king bed, recliner chair, and fireplace.<span id="dots">...</span><span id="more"></br></br>
+            The kitchen has all the appliances, utensils, dishes, etc., large refrigerator, dishwasher, microwave, and oven, and range.  The master bedroom has 5-piece Cal king bed set, 32' satellite DVR LED TV, love seat sofa, and a ceiling fan.  Bedroom #2 has queen bed set, satellite DVR cable LED TV, and ceiling fan.  Bedroom #3 has 5-piece king bed set, satellite DVR LED TV and ceiling fan.  Bedroom #4 has two sets of bunk beds (twin/full) and satellite DVR LED TV.  Bedroom #5 has 4-piece cal king bed set and satellite DVR LED TV.
+            Two of the bathrooms have tubs and one is shower only.  The pool bathroom has a toilet.  This house features central air conditioning and heating.  There are 3 sofa beds as well as 2 queen air mattresses available for use.
+            The first indoor great entertainment system is in the Family Room which features anew  55” LED HDTV with HD satellite DVR, Netflix and Blu-ray player.
+            The second indoor entertainment system is in the garage 58 in. plasma HDTV, satellite DVR, Netflix (500 movies and TV shows streaming on high speed broadband), and Blu-ray/DVD player.  Seating includes sectional sofa.  In addition, there is an 8 foot slate billiard table.   Also included is free use of Xbox 360 video game.
+            There 2 Pac-n-Play, 2 large strollers, 2 high chairs, and other baby items available for use at the house.</br></br>
+            Outdoor patio entertainment features a private swimming pool with optional heating, back yard pool lock safety gate, gas BBQ grill, dining table set for 8, Wicker conversation set, 2 matching Wicker lounge chairs, and umbrella.  There are numerous floating pool toys available for use.
+            This house has programmable key-less entry.  No worry for lost key and everybody has access to the house.  The backyard features a 16'x10' red wood Gazebo holding an 8-person spa with sky light and windows.  This enclosed spa Gazebo has sitting chairs, and table.  Spa use is included in the rent.  Optional pool heating is $15 - $25/day for heating the pool up to 83F.
+          </br></br>
+            Note that HomeAway, VRBO, and VacationRentals online payment has a credit card surcharge of 2.5-3.5% for domestic and 3.5-5.0% for international use.   Check or echeck payment is free of charge.
+          </br></br>
+            There is a notebook available that contains description of some attractions, directions, airports, and recommendations of nearby restaurants.  Off street parking space for 4 cars.
+            </span>
+          </p>
+        <button onclick="myFunction()" id="myBtn">Read more</button>
+      </div>
+
+      <div id="Sect2-amenities" class="container">
+        <h1>Amenities</h1>
+        <div class="container">
+            <table class="table table-borderless">
+              <tr>
+                <th>Featured</th>
+              </tr>
+              <tr>
+                <td style="width:33%"><i class="fas fa-fan fa-sm"></i>Air Conditioning</td>
+                <td style="width:33%"><i class="fas fa-wifi fa-sm"></i>Internet</td>
+                <td style="width:33%"><i class="fas fa-hot-tub fa-sm"></i>Hot Tub</td>
+              </tr>
+              <tr>
+                <td style="width:33%"><i class="fas fa-tv fa-sm"></i> TV</td>
+                <td style="width:33%"><i class="fas fa-temperature-high fa-sm"></i>Heater</td>
+                <td style="width:33%"><i class="fas fa-swimming-pool fa-sm"></i> Swimming pool</td>
+              </tr>
+              <tr>
+                <td style="width:33%"><i class="fas fa-satellite-dish fa-sm"></i> Satellite or Cable</td>
+                <td style="width:33%"><i class="fas fa-car fa-sm"></i> Parking</td>
+              </tr>
+          </table> 
+          <hr>
+
+          <table class="table table-borderless">
+            <tr>
+              <th>Safety Features</th>
+            </tr>
+            <tr>
+              <td style="width:33%">Smoke detector</td>
+              <td style="width:33%">Carbon-monoxide detector</td>
+              <td style="width:33%">Fire extinguisher</td>
+            </tr>
+          </table>
+          <hr>
+
+          <table class="table table-borderless">
+            <tr>
+              <th>General</th>
+            </tr>
+            <tr>
+              <td style="width:33%">Telephone</td>
+              <td style="width:33%">Clothes Dryer</td>
+              <td style="width:33%">Iron & Board</td>
+            </tr>
+            <tr>
+              <td style="width:33%">Air Conditioning</td>
+              <td style="width:33%">Parking</td>
+              <td style="width:33%">Hair Dryer</td>
+            </tr>
+            <tr>
+              <td style="width:33%">Heating</td>
+              <td style="width:33%">Internet</td>
+              <td style="width:33%">Living Room</td>
+            </tr>
+          </table>
+          <hr>
+
+          <table class="table table-borderless">
+            <tr>
+              <th>Kitchen</th>
+            </tr>
+            <tr>
+              <td style="width:33%">Dishwasher</td>
+              <td style="width:33%">Microwave</td>
+              <td style="width:33%">Pantry Items</td>
+            </tr>
+            <tr>
+              <td style="width:33%">Refrigerator</td>
+              <td style="width:33%">Grill</td>
+              <td style="width:33%">Dishes & Utensils</td>
+            </tr>
+            <tr>
+              <td style="width:33%">Stove</td>
+              <td style="width:33%">Coffee Maker</td>
+              <td style="width:33%">Oven</td>
+            </tr>
+          </table>
+          <hr>
+
+          <table class="table table-borderless">
+            <tr>
+              <th>Entertainment</th>
+            </tr>
+            <tr>
+              <td style="width:33%">Television</td>
+              <td style="width:33%">Games</td>
+              <td style="width:33%">Toys</td>
+            </tr>
+            <tr>
+              <td style="width:33%">Satellite/Cable</td>
+              <td style="width:33%">Ping Pong Table</td>
+              <td style="width:33%"></td>
+            </tr>
+            <tr>
+              <td style="width:33%">Game Room</td>
+              <td style="width:33%">Pool Table</td>
+              <td style="width:33%"></td>
+            </tr>
+          </table>
+          <hr>
+
+          <table class="table table-borderless">
+            <tr>
+              <th>Pool/Spa</th>
+            </tr>
+            <tr>
+              <td style="width:33%">Heated Pool</td>
+              <td style="width:33%">Private Pool</td>
+              <td style="width:33%">Hot Tub</td>
+            </tr>
+          </table>
+          <hr>
+          </div>
+      </div>
+
+      <div id="Sect3-reviews" class="container">
+        <h1>7 Reviews</h1>
+        <div>
+          <h5>Large disney rental</h5>
+            <span>4/5</span>
+            <span class="fas fa-star"></span>
+            <span class="fas fa-star"></span>
+            <span class="fas fa-star"></span>
+            <span class="fas fa-star"></span>
+            <span class="far fa-star"></span>
+            <span>  Stayed Aug 2019</span>
+            
+          <p>Susan D.</p>
+          <p>The house was maintained very well, very set up for everthing needed in a vacation home, including kitchen tools/pots/pan, games and game room. The house was great for a large group. There were so many bed and bathrooms.</p>
+          <p>Published Sep 10, 2019</p>
+          <hr>
+        </div>
+
+      <div>
+        <h5>Family Disneyland trip</h5>
+          <span>5/5</span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span>  Stayed Jul 2018</span>
+        <p>Kristen S.</p>
+        <p>Great experience. Easy and uncomplicated. Definitely recommend</p>
+        <p>Published Aug 8, 2018</p>
+        <hr>
+      </div><span id="dots2"></span><span id="more2">
+
+    <div>
+        <h5>Everything we could have wanted for a beach and Disneyland vacation.</h5>
+          <em>5/5</em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em>  Stayed Jun 2017</em>
+        <p>Elizabeth B.</p>
+        <p>The house was wonderful! We spent two days at Disneyland and a day at the beach. We were thinking we’d have to purchase sand toys and beach towels for our day at the beach. However, the house had it all. Thank you for letting us use your house. Our trip could not have been better.</p>
+        <p>Published Jun 24, 2017</p>
+        <hr>
+      </div>
+
+      <div>
+        <h5>Best family vacation ever!</h5>
+        <em>4/5</em>
+        <em class="fas fa-star"></em>
+        <em class="fas fa-star"></em>
+        <em class="fas fa-star"></em>
+        <em class="fas fa-star"></em>
+        <em class="far fa-star"></em>
+        <em>  Stayed Mar 2016</em>
+        <p>Jessi N.</p>
+        <p>Great place for a family gathering at Disneyland. Walked to the park everyday. The pool was perfect and the backyard was private and felt like a resort. Well stocked kitchen and the bedroom/bathroom situation was ideal. Can’t wait to stay here again!!</p>
+        <p>Published Mar 18, 2016</p>
+        <hr>
+      </div>
+        
+      <div>
+        <h5>Disney Vacation</h5>
+          <em>5/5</em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em class="fas fa-star"></em>
+          <em>  Stayed Jan 2015</em>
+        <p>Ramona W.</p>
+        <p>I shared this property with my sister and her family for what was the best family vacation ever. I give a lot of credit to this magical home. We couldn't have been more comfortable. This home has everything you need and more! My kids call it our Disney home. So close to the Disneyland that we walked there and ubered home for $7. We will be staying here again. This home will make you never want to stay in a hotel again. The owners provided us with amazing communication and met all our needs. I could go on and on will all the fantastic amenities this home has. You won't regret it!</p>
+        <p>Published Feb 24, 2015</p>
+        <hr>
+      </div>
+
+      <div>
+        <h5>Family Disneyland trip</h5>
+        <em>5/5</em>
+        <em class="fas fa-star"></em>
+        <em class="fas fa-star"></em>
+        <em class="fas fa-star"></em>
+        <em class="fas fa-star"></em>
+        <em class="fas fa-star"></em>
+        <em>  Stayed Jun 2014</em>
+        <p>Carolyn T.</p>
+        <p>Great place for a family gathering at Disneyland. Walked to the park everyday. The pool was perfect and the backyard was private and felt like a resort. Well stocked kitchen and the bedroom/bathroom situation was ideal. Can’t wait to stay here again!!</p>
+        <p>Published Aug 8, 2014</p>
+        <hr>
+      </div>
+
+      <div>
+        <h5>Loved it. Would definitely go back</h5>
+          <span>5/5</span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span>  Stayed Nov 2013</span>
+        <p>William M.</p>
+        <p>House is great and as described. Owners should provide more towels and toilet paper. No problems with neighbors.</p>
+        <p>Published Dec 29, 2013</p>
+      </div> 
+        </span><button onclick="myFunction2()" id="myBtn2">Read more</button>
+        <hr>
+                 
+    </div>
+    
+      <div id="Sect4-map" class="container">
+        <h1>Map</h1>
+          <div id="Mymap"></div>
+      </div>
+
+      <div id="Sect5-availability" class="container">
+        <h1>Availability</h1>
+        <div id="availableDiv"></div>
+      </div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+  <!-- FOOTER -->
+  <div id="Sect6-footer">
+    <div class="container">
+      <div class="row center-xs center-sm center-md center-lg">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <p>Copyright &copy; 2019 | Great Entertainment Vacation Home</p>
+        </div>
+      </div>
+    </div>
+  </div>      
+</div>
+
+<script>
+/////////////////////////////////////////////////////////////////////////////
+  //    Map-This did not work well when put in script.js
+  function initMap(){
+    // Map options
+    var options = {
+      zoom:13,
+      center:{lat:33.8366,lng:-117.9143}
+    }
+
+    // New map
+    var map = new google.maps.Map(document.getElementById('Mymap'), options);
+
+    var marker = new google.maps.Marker({
+      position:{lat:33.8366,lng:-117.9143},
+      map:map
+    });
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Overview Read More button
+  function myFunction() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("myBtn");
+
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less"; 
+      moreText.style.display = "inline";
+    }
+  }
+
+  // Reviews Read More button
+  function myFunction2() {
+    var dots = document.getElementById("dots2");
+    var moreText = document.getElementById("more2");
+    var btnText = document.getElementById("myBtn2");
+
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less"; 
+      moreText.style.display = "inline";
+    }
+  }
+  /////////////////////////////////////////////////////////////////////////////////
+</script>
+   
+<script  src="./js/script.js">
+  jq("input[type='number']").inputSpinner();
+</script>
+
+<script src="https://kit.fontawesome.com/cc682b11a6.js" crossorigin="anonymous"></script>
+
+  <!-- This Google map needs to be down here. -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtkY85H-BxaOyyi-NPria0F629jQpH6a8&callback=initMap">
+</script>
+
+</body>
+</html>

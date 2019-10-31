@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Great Entertainment Vacation Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+  <!-- <script src="https://kit.fontawesome.com/cc682b11a6.js" crossorigin="anonymous"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+  <!-- Latest Bootstrap 4 version erase the menu bar -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+  <!-- <link href="./style.css"> -->
+
+  <!-- For Calendar -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+html {  /* This will not work if put in the style.css file */
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative; 
+}
+
+#Sect1-overview {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect2-amenities {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect3-reviews {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect4-map {padding-top:50px; color: rgb(32, 32, 32); }
+#Sect5-availability {padding-top:50px; color: rgb(32, 32, 32); }
+
+div2 {
+  display: inline;
+}
+
+.ui-datepicker {
+  font-size: 1.6em;
+  }
+  
+#Mymap{
+  height:400px;
+  width:100%;
+}
+
+#availableDiv{
+  height:auto;
+  width:100%;
+}
+
+#checkInDate{
+  height:auto;
+  width:100%;
+}
+#checkOutDate{
+  height:auto;
+  width:100%;
+}
+
+#more {display: none;}
+
+#more2 {display: none;}
+
+/* change the background color */
+.navbar-custom {
+  background-color: #343440  /* #464545; */
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: #ffffff;
+  padding: 0.8rem 1rem;
+}
+
+/* change the link color and add padding for height */
+.navbar-custom .navbar-nav .nav-link {
+  color: rgba(255,255,255,.33);
+  padding: 1rem 1rem;
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #ffffff;
+  background-color: #000000/*#110f0f;  add background-color to active links */
+}
+
+  @media screen and (max-width: 970px) {
+    .ui-datepicker  { font-size: .7em;}
+  }
+
+</style>
+</head>
+<body data-spy="scroll" data-offset="50">  
+  <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: rgb(192, 192, 192);">
+    <a href="#" class="navbar-brand"><img src="./images/logo8.gif"></a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse5">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse5">
+      <form class="form-inline ml-auto">
+        <a class="btn btn-outline-secondary" href="index.html" role="button">Home</a>
+        <a class="btn btn-outline-secondary" href="login.html" role="button">Login</a>
+      </form>
+        <!-- <form class="form-inline ml-auto">
+            <input type="text" class="form-control mr-sm-2" placeholder="Search">
+            <button type="submit" class="btn btn-outline-light">Search</button>
+        </form> -->
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row ">
+        <div class="col-md-5">
+            <!-- Top -->
+            <div class="profile-top bg-primary p-2">
+                <img
+                  class="rounded mx-auto d-block"
+                  src="./images/TommyAvatar.jpg"
+                  alt=""/>
+                <br/>
+                <h1 class="large">Tommy Cao</h1>
+                <p class="lead">Web Developer</p>
+                <p class="lead">Vacation Rental Owner</p>
+                <p class="lead">Anaheim, CA</p>
+                <!-- <div class="icons my-1">
+                  <a href="#">
+                    <i class="fas fa-star"></i>
+                  </a>
+                  <a href="#">
+                    <i class="fas fa-facebook fa-2x"></i>
+                  </a>
+                  <a href="#">
+                    <i class="fas fa-linkedin fa-2x"></i>
+                  </a>
+                  <a href="#">
+                    <i class="fas fa-instagram fa-2x"></i>
+                  </a>
+                </div> -->
+            </div>
+
+                    <!-- About -->
+            <div class="profile-about bg-light p-2">
+                <h2 class="text-primary">Tommy's Bio</h2>
+                <p>
+                  Anaheim is our home for the past 15 years. We love our city and our neighboorhood; it is truly the happiest place on earth. 
+                  This city and this home is the place where our dreams became reality and where the greatest memories of our lives made imprints on our soul.
+                </p>
+                <h2 class="text-primary"></h2>
+                <div class="skills">
+                  <p class="p-1"><i class="fas fa-check"></i> Private Pool</p>
+                  <p class="p-1"><i class="fas fa-check"></i> Hot Tub</p>
+                  <p class="p-1"><i class="fas fa-check"></i> Satellite TV in all rooms</p>
+                  <p class="p-1"><i class="fas fa-check"></i> Game room</p>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="profile-exp bg-white p-2">
+                <p>
+                <strong>Why Tommy chose this house </strong>This cute house has everything you need to enjoy the vacation of a lifetime. 
+                A very private little compound and it'll take you less than 15 minutes to walk to Disneyland. 
+                You won't likely see any neighbors during your stay as this corner lot house is quite secluded and fenced in. 
+                Just bring your clothes, the kids and your food. We have everything else covered.
+                </p>
+            </div>
+
+            <!-- Education -->
+            <div class="profile-edu bg-white p-2">
+                <p>
+                  <strong>Description: </strong>This house is just one mile away from the front gate of Disneyland.
+                </p>
+            </div>  
+            <hr>            
+        </div> <!-- col-md-5 -->
+
+        <div class="col-md-7">
+            <h1>7 Reviews</h1>
+            <hr>
+            <div>
+                <h5>Large disney rental</h5>
+                <span>4/5</span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+                <span class="far fa-star"></span>
+                <span>  Stayed Aug 2019</span>
+                
+                <p>Susan D.</p>
+                <p>The house was maintained very well, very set up for everthing needed in a vacation home, including kitchen tools/pots/pan, games and game room. The house was great for a large group. There were so many bed and bathrooms.</p>
+                <p>Published Sep 10, 2019</p>
+                <hr>
+            </div>
+        
+            <div>
+                <h5>Family Disneyland trip</h5>
+                <span>5/5</span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+                <span>  Stayed Jul 2018</span>
+                <p>Kristen S.</p>
+                <p>Great experience. Easy and uncomplicated. Definitely recommend</p>
+                <p>Published Aug 8, 2018</p>
+                <hr>
+            </div>
+    
+            <div>
+                <h5>Everything we could have wanted for a beach and Disneyland vacation.</h5>
+                    <em>5/5</em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em>  Stayed Jun 2017</em>
+                <p>Elizabeth B.</p>
+                <p>The house was wonderful! We spent two days at Disneyland and a day at the beach. We were thinking we’d have to purchase sand toys and beach towels for our day at the beach. However, the house had it all. Thank you for letting us use your house. Our trip could not have been better.</p>
+                <p>Published Jun 24, 2017</p>
+                <hr>
+                </div>
+        
+                <div>
+                <h5>Best family vacation ever!</h5>
+                <em>4/5</em>
+                <em class="fas fa-star"></em>
+                <em class="fas fa-star"></em>
+                <em class="fas fa-star"></em>
+                <em class="fas fa-star"></em>
+                <em class="far fa-star"></em>
+                <em>  Stayed Mar 2016</em>
+                <p>Jessi N.</p>
+                <p>Great place for a family gathering at Disneyland. Walked to the park everyday. The pool was perfect and the backyard was private and felt like a resort. Well stocked kitchen and the bedroom/bathroom situation was ideal. Can’t wait to stay here again!!</p>
+                <p>Published Mar 18, 2016</p>
+                <hr>
+                </div>
+                
+                <div>
+                <h5>Disney Vacation</h5>
+                    <em>5/5</em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em>  Stayed Jan 2015</em>
+                <p>Ramona W.</p>
+                <p>I shared this property with my sister and her family for what was the best family vacation ever. I give a lot of credit to this magical home. We couldn't have been more comfortable. This home has everything you need and more! My kids call it our Disney home. So close to the Disneyland that we walked there and ubered home for $7. We will be staying here again. This home will make you never want to stay in a hotel again. The owners provided us with amazing communication and met all our needs. I could go on and on will all the fantastic amenities this home has. You won't regret it!</p>
+                <p>Published Feb 24, 2015</p>
+                <hr>
+                </div>
+        
+                <div>
+                <h5>Family Disneyland trip</h5>
+                <em>5/5</em>
+                <em class="fas fa-star"></em>
+                <em class="fas fa-star"></em>
+                <em class="fas fa-star"></em>
+                <em class="fas fa-star"></em>
+                <em class="fas fa-star"></em>
+                <em>  Stayed Jun 2014</em>
+                <p>Carolyn T.</p>
+                <p>Great place for a family gathering at Disneyland. Walked to the park everyday. The pool was perfect and the backyard was private and felt like a resort. Well stocked kitchen and the bedroom/bathroom situation was ideal. Can’t wait to stay here again!!</p>
+                <p>Published Aug 8, 2014</p>
+                <hr>
+                </div>
+        
+                <div>
+                <h5>Loved it. Would definitely go back</h5>
+                    <span>5/5</span>
+                    <span class="fas fa-star"></span>
+                    <span class="fas fa-star"></span>
+                    <span class="fas fa-star"></span>
+                    <span class="fas fa-star"></span>
+                    <span class="fas fa-star"></span>
+                    <span>  Stayed Nov 2013</span>
+                <p>William M.</p>
+                <p>House is great and as described. Owners should provide more towels and toilet paper. No problems with neighbors.</p>
+                <p>Published Dec 29, 2013</p>
+                <hr>
+            </div>                        
+        </div> <!-- col-7 because col-9 is too big for iPad Safari Check In/Out inputs -->
+    </div> <!-- big row -->
+    </br>
+</div>
+
+    <!-- FOOTER -->
+    <div class="container">
+            <p>Copyright &copy; 2019 | Great Entertainment Vacation Home</p>
+    </div>  
+
+<script src="https://kit.fontawesome.com/cc682b11a6.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
