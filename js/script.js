@@ -4,13 +4,34 @@
 //  Description: Great Entertainment Vacation Rental Website 
  
 var form = document.getElementById('addForm');
-
 var totalStaymSec;
 var totalStayNight;
 
+var Cal_array = 
+[
+"11-4-2019","11-5-2019","11-6-2019", "11-7-2019",
+"11-9-2019","11-10-2019","11-11-2019", "11-12-2019", "11-13-2019", "11-14-2019", "11-15-2019",
+"11-18-2019","11-19-2019","11-20-2019",
+"11-22-2019","11-23-2019","11-24-2019", "11-25-2019", "11-26-2019", "11-27-2019", "11-28-2019",
+"12-4-2019","12-5-2019","12-6-2019", "12-7-2019",
+"12-9-2019","12-10-2019","12-12-2019", "12-12-2019", "12-13-2019", "12-14-2019",
+"12-18-2019","12-19-2019","12-20-2019",
+"12-22-2019","12-23-2019","12-24-2019", "12-25-2019", "12-26-2019", "12-27-2019", "12-28-2019",
+"12-29-2019","12-30-2019","12-31-2019", "1-1-2020", "1-2-2020", "1-3-2020",
+"1-5-2020","1-6-2020", "1-7-2020",
+"1-9-2020","1-10-2020","1-11-2020", "1-12-2020", "1-13-2020", "1-14-2020", "1-15-2020",
+"1-18-2020","1-19-2020","1-20-2020", "1-21-2020",
+"1-22-2020","1-23-2020","1-24-2020", "1-25-2020", "1-26-2020", "1-27-2020", "1-28-2020",
+"2-1-2020","2-2-2020","2-3-2020", "2-4-2020", 
+"2-05-2020","2-6-2020", "2-7-2020",
+"2-09-2020","2-10-2020","2-11-2020", "2-12-2020", "2-13-2020", "2-14-2020", "2-15-2020",
+"2-18-2020","2-19-2020","2-20-2020", "2-21-2020", "2-22-2020",
+"2-24-2020","2-25-2020","2-26-2020", "2-27-2020", "2-28-2020", "2-29-2020"
+];
+
 form.addEventListener('submit', addItem);
 
-// Add item
+// Check availability
 function addItem(e){
   e.preventDefault();
 
@@ -30,69 +51,65 @@ function addItem(e){
       // console.log(checkInDate1);
       // console.log(checkOutDate1);
       
-      //console.log(totalStayNight);
-      //console.log(totalNights);
+      var rentDates = dateRange(checkInDate1, checkOutDate1);
 
-      // Get input value
-      var totalNights = 259 * totalStayNight;
-      var totalTax = 0.08 * (totalNights + 200);
-      var rentTotal = totalNights + 200 + totalTax;
-      var grandTotal = rentTotal + 350;
-      
-      document.getElementById("totalGuests").innerHTML = "Guests: " + totalGuests;
-      document.getElementById("totalNights").innerHTML = "Nights: " + totalStayNight;
-      document.getElementById("totalCost").innerHTML = "Total: " + "$" + rentTotal.toFixed(2); // .toLocaleString(undefined, {maximumFractionDigits:2}) // insert comma but lost the .00.
-      document.getElementById("taxesFees").innerHTML = "Includes taxes and fees";
-      document.getElementById("viewDetails").innerHTML = "<a data-toggle='modal' href='#modalViewDetails'>View Details</a>";
-      document.getElementById("bookNow").innerHTML = "<a href='input-form.html' class='btn btn-outline-secondary' role='button'>Book Now</a>";
+      let sameDate = [];
 
-      
+      // Look for date conflicts
+      for (let i=0; i < Cal_array.length; i++) { 
+        for (let j=0; j < rentDates.length; j++) {
+          if (!Cal_array[i].localeCompare(rentDates[j])) {
+            sameDate.push(Cal_array[i]);
+          }
+        }
+      }
 
-      document.getElementById("modalViewDetailsNights1").innerHTML = totalStayNight + " nights:";
-      document.getElementById("modalViewDetailsNights2").innerHTML = "$" + totalNights.toFixed(2);
-      document.getElementById("modalViewDetailsCleaning").innerHTML = "$200.00";
-      document.getElementById("modalViewDetailsTax").innerHTML = "$" + totalTax.toFixed(2);
+      if (sameDate == 0) { // Dates are available
+        // Get input value
+        var totalNights = 259 * totalStayNight;
+        var totalTax = 0.08 * (totalNights + 200);
+        var rentTotal = totalNights + 200 + totalTax;
+        var grandTotal = rentTotal + 350;
+        
+        document.getElementById("totalGuests").innerHTML = "Guests: " + totalGuests;
+        document.getElementById("totalNights").innerHTML = "Nights: " + totalStayNight;
+        document.getElementById("totalCost").innerHTML = "Total: " + "$" + rentTotal.toFixed(2); // .toLocaleString(undefined, {maximumFractionDigits:2}) // insert comma but lost the .00.
+        document.getElementById("taxesFees").innerHTML = "Includes taxes and fees";
+        document.getElementById("viewDetails").innerHTML = "<a data-toggle='modal' href='#modalViewDetails'>View Details</a>";
+        document.getElementById("bookNow").innerHTML = "<a href='input-form.html' class='btn btn-outline-secondary' role='button'>Book Now</a>";
 
-      document.getElementById("modalViewDetailsTotal").innerHTML = "$" + rentTotal.toFixed(2);
-      document.getElementById("modalViewDetailsDeposit").innerHTML = "$350.00";
-      document.getElementById("modalViewDetailsTotal+Deposit").innerHTML = "$" + grandTotal.toFixed(2);
+        document.getElementById("modalViewDetailsNights1").innerHTML = totalStayNight + " nights:";
+        document.getElementById("modalViewDetailsNights2").innerHTML = "$" + totalNights.toFixed(2);
+        document.getElementById("modalViewDetailsCleaning").innerHTML = "$200.00";
+        document.getElementById("modalViewDetailsTax").innerHTML = "$" + totalTax.toFixed(2);
 
-      document.getElementById("modalViewDetailsYourPayment").innerHTML = "$" + grandTotal.toFixed(2);
-    }
+        document.getElementById("modalViewDetailsTotal").innerHTML = "$" + rentTotal.toFixed(2);
+        document.getElementById("modalViewDetailsDeposit").innerHTML = "$350.00";
+        document.getElementById("modalViewDetailsTotal+Deposit").innerHTML = "$" + grandTotal.toFixed(2);
+
+        document.getElementById("modalViewDetailsYourPayment").innerHTML = "$" + grandTotal.toFixed(2);
+      }
+      else { // Dates not available
+        document.getElementById("totalGuests").innerHTML = "Dates not available. Please select different dates.";
+        document.getElementById("totalNights").innerHTML = ""; // Clear the rest of screen
+        document.getElementById("totalCost").innerHTML = "";
+        document.getElementById("taxesFees").innerHTML = "";
+        document.getElementById("viewDetails").innerHTML = "";
+        document.getElementById("bookNow").innerHTML = "";
+      }      
+    } // checkin and checkout dates are good.
     else {
       confirm ("Please enter the checkout date after checkin date.");
     }
-  }
+  } // total guests is good.
   else confirm ("Total guests can not exceed 18.");
 } // addItem()
 
 ////////////////////////////////////////////////////////////////////////////
 // Calendar
-var Cal_array = 
-[
-"11-04-2019","11-05-2019","11-06-2019", "11-07-2019",
-"11-09-2019","11-10-2019","11-11-2019", "11-12-2019", "11-13-2019", "11-14-2019", "11-15-2019",
-"11-18-2019","11-19-2019","11-20-2019",
-"11-22-2019","11-23-2019","11-24-2019", "11-25-2019", "11-26-2019", "11-27-2019", "11-28-2019",
-"12-04-2019","12-05-2019","12-06-2019", "12-07-2019",
-"12-09-2019","12-10-2019","12-12-2019", "12-12-2019", "12-13-2019", "12-14-2019",
-"12-18-2019","12-19-2019","12-20-2019",
-"12-22-2019","12-23-2019","12-24-2019", "12-25-2019", "12-26-2019", "12-27-2019", "12-28-2019",
-"12-29-2019","12-30-2019","12-31-2019", "01-01-2020", "01-02-2020", "01-03-2020",
-"01-05-2020","01-06-2020", "01-07-2020",
-"01-09-2020","01-10-2020","01-11-2020", "01-12-2020", "01-13-2020", "01-14-2020", "01-15-2020",
-"01-18-2020","01-19-2020","01-20-2020", "01-21-2020",
-"01-22-2020","01-23-2020","01-24-2020", "01-25-2020", "01-26-2020", "01-27-2020", "01-28-2020",
-"02-01-2020","02-02-2020","02-03-2020", "02-04-2020", 
-"02-05-2020","02-06-2020", "02-07-2020",
-"02-09-2020","02-10-2020","02-11-2020", "02-12-2020", "02-13-2020", "02-14-2020", "02-15-2020",
-"02-18-2020","02-19-2020","02-20-2020", "02-21-2020", "02-22-2020",
-"02-24-2020","02-25-2020","02-26-2020", "02-27-2020", "02-28-2020", "02-29-2020"
-];
-
 var jq = $.noConflict();
 jq(document).ready( function() {
-    jq("#availableDiv").datepicker({
+  jq("#availableDiv").datepicker({
 
   // jQuery( function() {
   // 	jQuery( "#mydiv" ).datepicker({
@@ -101,14 +118,14 @@ jq(document).ready( function() {
 // (function($) {
 // 		$( function() {
 // 			$( "#mydiv" ).datepicker({					
-      changeMonth: true,
-      changeYear: true,
-      numberOfMonths: 2,
-      minDate: 0, maxDate: "+2Y",
-      beforeShowDay: function(date){
-      var string = jq.datepicker.formatDate('mm-dd-yy', date);
+    changeMonth: true,
+    changeYear: true,
+    numberOfMonths: 2,
+    minDate: 0, maxDate: "+2Y",
+    beforeShowDay: function(date){
+      var string = jq.datepicker.formatDate('m-d-yyyy', date);
       return [ Cal_array.indexOf(string) == -1 ]
-      }
+    }
   });
 });
 //  }) (jQuery);
@@ -120,7 +137,7 @@ jq(function() {
     minDate: 0, maxDate: "+2Y",
     showButtonPanel: true,    
     beforeShowDay: function(date){
-    var string = jq.datepicker.formatDate('mm-dd-yy', date);
+    var string = jq.datepicker.formatDate('m-d-yy', date);
     return [ Cal_array.indexOf(string) == -1 ]
     }
   });				
@@ -134,7 +151,7 @@ jq(function() {
     minDate: 0, maxDate: "+2Y",
     showButtonPanel: true,
     beforeShowDay: function(date){
-    var string = jq.datepicker.formatDate('mm-dd-yy', date);
+    var string = jq.datepicker.formatDate('m-d-yy', date);
     return [ Cal_array.indexOf(string) == -1 ]
     }
   });				
@@ -159,19 +176,85 @@ jq(function() {
 // } 
 
 var items = $(".list-wrapper .list-item");
-    var numItems = items.length;
-    var perPage = 3;
+var numItems = items.length;
+var perPage = 3;
 
-    items.slice(perPage).hide();
+items.slice(perPage).hide();
 
-    $('#pagination-container').pagination({
-        items: numItems,
-        itemsOnPage: perPage,
-        prevText: "&laquo;",
-        nextText: "&raquo;",
-        onPageClick: function (pageNumber) {
-            var showFrom = perPage * (pageNumber - 1);
-            var showTo = showFrom + perPage;
-            items.hide().slice(showFrom, showTo).show();
+$('#pagination-container').pagination({
+  items: numItems,
+  itemsOnPage: perPage,
+  prevText: "&laquo;",
+  nextText: "&raquo;",
+  onPageClick: function (pageNumber) {
+    var showFrom = perPage * (pageNumber - 1);
+    var showTo = showFrom + perPage;
+    items.hide().slice(showFrom, showTo).show();
+  }
+});
+
+function dateRange(startDate, endDate) {
+  var maxDayMonth, i;
+  var start = startDate.split('/');
+  var end   = endDate.split('/');
+  var startDay  = parseInt(start[1]);
+  var endDay    = parseInt(end[1]);
+  var startMonth  = parseInt(start[0]);
+  var endMonth    = parseInt(end[0]);
+  var startYear  = parseInt(start[2]);
+  var endYear    = parseInt(end[2]);
+  var dates      = [];
+
+  for (var k = startYear; k <= endYear; k++) {
+    if (endYear > k) {
+      var endMonthYear = 12; // go to the end of the year
+      for( i = startMonth; i <= endMonthYear; i++) {
+        findMaxDayMonth(i, k);            
+        processDays(endMonthYear+1, i, k);            
+      }
+      startMonth = 1; // start January
+    }
+    else { // not full year
+      for( i = startMonth; i <= endMonth; i++) {
+        findMaxDayMonth(i, k);
+        processDays(endMonth, i, k);
+      } // for
+    } // else
+  } // for
+
+  function findMaxDayMonth(monthX, yearX){
+    switch (monthX) {
+      case 2: // Feb
+        if ((yearX % 4) == 0) {
+          maxDayMonth = 29 // leap year
         }
-    });
+        else {
+          maxDayMonth = 28; // non leap year
+        }
+          break;
+      case 4: case 6: case 9: case 11: // Apr, Jun, Sep, Nov
+        maxDayMonth = 30;
+        break;
+      case 1: case 3:  case 5:  case 7: case 8: case 10: case 12: // Jan, Mar, May, Jul, Aug, Oct, Dec
+        maxDayMonth = 31;
+        break;
+    }
+  }
+
+  function processDays(currentEndMonth, currentMonth, currentYear){
+    var jDay;
+    if ( currentMonth < currentEndMonth ) {
+      for( jDay = startDay; jDay <= maxDayMonth; jDay++) {
+        dates.push([currentMonth, jDay, currentYear].join('-')); // m-d-yyyy
+      }
+      startDay = 1; // reset to first of the month
+    }
+    else {
+      for( jDay = startDay; jDay <= endDay-1; jDay++) {
+        dates.push([currentMonth, jDay, currentYear].join('-')); // m-d-yyyy
+      }
+  }
+  }
+
+  return dates;
+}    
