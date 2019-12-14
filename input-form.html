@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Great Entertainment Vacation Home</title>
+ 
+<!--  //  Name: Tommy Cao
+      //  Date: 6/10/13
+      //  Company: GEVH
+      //  Description: Great Entertainment Vacation Rental Website -->
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #2780E3;">
+        <a href="index.html" class="navbar-brand"><img src="./images/logo16.gif"></a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse5">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarCollapse5">
+            <form class="form-inline ml-auto">
+            <a class="btn btn-outline-light" href="index.html" role="button">Home</a>        
+            <a class="btn btn-outline-light" href="about.html" role="button">About</a>
+            <a class="btn btn-outline-light" href="http://gevh1.com" role="button">Rental Reviews</a>
+            <a class="btn btn-outline-light" href="https://gevh-booking-feedback.herokuapp.com" role="button">Booking Feedback</a>            
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br/>
+        <div class="list-item">
+        <h2>Book your rental</h2>
+        <hr>
+        <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputFirstname">First name</label>
+                <input type="type" class="form-control" id="inputFirstname" placeholder="First name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputLastname">Last name</label>
+                <input type="type" class="form-control" id="inputLastname" placeholder="Last name">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+            <div class="form-group col-md-6">
+            <label for="inputPassword4">Mobile phone</label>
+            <input type="phone" class="form-control" id="inputMobilePhone" placeholder="Mobile phone">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+            </div>
+            <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-secondary">Book</button>
+    </form> 
+    </div>
+    </div>
+</br>
+</br>
+    <!-- FOOTER -->
+    <div class="container">
+        <p>Copyright &copy; 2019 | Great Entertainment Vacation Home</p>
+    </div> 
+</body>
+</html>
