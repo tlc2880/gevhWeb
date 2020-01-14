@@ -36,7 +36,7 @@ function addItem(e){
   e.preventDefault();
 
   // Get input value
-  var checkInDate1 = document.getElementById('checkInDate').value;
+  var checkInDate1 = document.getElementById('availableCal').value;
   var checkOutDate1 = document.getElementById('checkOutDate').value;
   var adultsInput = document.getElementById('adultsNum').value;
   var childrenInput = document.getElementById('childrenNum').value;
@@ -70,13 +70,15 @@ function addItem(e){
         var totalTax = 0.08 * (totalNights + 200);
         var rentTotal = totalNights + 200 + totalTax;
         var grandTotal = rentTotal + 350;
-        
+
+        // document.getElementById("frameTop").innerHTML = "class='list-item'"; // bottom of frame  
         document.getElementById("totalGuests").innerHTML = "Guests: " + totalGuests;
         document.getElementById("totalNights").innerHTML = "Nights: " + totalStayNight;
         document.getElementById("totalCost").innerHTML = "Total: " + "$" + rentTotal.toFixed(2); // .toLocaleString(undefined, {maximumFractionDigits:2}) // insert comma but lost the .00.
         document.getElementById("taxesFees").innerHTML = "Includes taxes and fees";
         document.getElementById("viewDetails").innerHTML = "<a data-toggle='modal' href='#modalViewDetails'>View Details</a>";
-        document.getElementById("bookNow").innerHTML = "<a href='input-form.html' class='btn btn-outline-secondary' role='button'>Book Now</a>";
+        document.getElementById("bookNow").innerHTML = "<a href='booking-form.php' class='btn btn-outline-secondary' role='button'>Book Now</a>";
+        //doc ument.getElementById("frameBottom").innerHTML = "</class='list-item'>"; // bottom of frame        
 
         document.getElementById("modalViewDetailsNights1").innerHTML = totalStayNight + " nights:";
         document.getElementById("modalViewDetailsNights2").innerHTML = "$" + totalNights.toFixed(2);
@@ -89,8 +91,8 @@ function addItem(e){
 
         document.getElementById("modalViewDetailsYourPayment").innerHTML = "$" + grandTotal.toFixed(2);
       }
-      else { // Dates not available
-        document.getElementById("totalGuests").innerHTML = "Dates not available. Please select different dates.";
+      else { // Dates are not available
+        document.getElementById("totalGuests").innerHTML = "Date is not available. Please select different dates.";
         document.getElementById("totalNights").innerHTML = ""; // Clear the rest of screen
         document.getElementById("totalCost").innerHTML = "";
         document.getElementById("taxesFees").innerHTML = "";
@@ -108,27 +110,7 @@ function addItem(e){
 ////////////////////////////////////////////////////////////////////////////
 // Calendar
 var jq = $.noConflict();
-jq(document).ready( function() {
-  jq("#availableDiv").datepicker({
 
-  // jQuery( function() {
-  // 	jQuery( "#mydiv" ).datepicker({
-
-// jQuery.noConflict();
-// (function($) {
-// 		$( function() {
-// 			$( "#mydiv" ).datepicker({					
-    changeMonth: true,
-    changeYear: true,
-    numberOfMonths: 2,
-    minDate: 0, maxDate: "+2Y",
-    beforeShowDay: function(date){
-      var string = jq.datepicker.formatDate('m-d-yyyy', date);
-      return [ Cal_array.indexOf(string) == -1 ]
-    }
-  });
-});
-//  }) (jQuery);
 jq(function() {
   jq("#checkInDate").datepicker({
     changeMonth: true,
@@ -156,24 +138,21 @@ jq(function() {
     }
   });				
 });
-// /////////////////////////////////////////////////////////////////////////////
-// //    Map
-// function initMap(){
-// // Map options
-// var options = {
-// zoom:13,
-// center:{lat:33.8366,lng:-117.9143}
-// }
 
-// // New map
-// var map = new google.maps.Map(document.getElementById('Mymap'), options);
-
-// var marker = new google.maps.Marker({
-// position:{lat:33.8366,lng:-117.9143},
-// map:map
-// //icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-// });
-// } 
+jq(function() {
+  jq("#availableCal").datepicker({
+    changeMonth: true,
+    changeYear: true,
+    numberOfMonths: 2,
+    minDate: 0, maxDate: "+2Y",
+    showButtonPanel: true,    
+    beforeShowDay: function(date){
+    var string = jq.datepicker.formatDate('m-d-yy', date);
+    return [ Cal_array.indexOf(string) == -1 ]
+    }
+  });				
+});
+// ///////////////////////////////////////////////////////////////////////////// 
 
 var items = $(".list-wrapper .list-item");
 var numItems = items.length;
